@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+@keyframes scroll-track {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-track {
+  animation: scroll-track 30s linear infinite;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.6;
+  }
+}
+.animate-pulse {
+  animation: pulse 6s ease-in-out infinite;
+}
+
+/* 🧼 REMOVE ALL SATOSHI FONT-FACES — Not needed anymore */
+/* 🔥 You now use General Sans via local font setup in `fonts.ts` */
+
+/* ✅ DO NOT set font-family on body here — let layout.tsx handle it */

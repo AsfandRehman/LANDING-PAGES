@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/* globals.css */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Prevent horizontal scroll across the entire app */
+html, body {
+  overflow-x: clip; /* better than hidden; allows momentum scroll on Y */
+}
+
+/* Safer sizing everywhere */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Images never exceed their containers */
+img, video, canvas, svg { max-width: 100%; height: auto; }
+
+/* Utility: sometimes 3rd-party widgets break layout */
+.overflow-clip-x { overflow-x: clip; }

@@ -1,0 +1,57 @@
+/* components/Footer.module.css */
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* animated hairline at the very top of the footer */
+.hairline {
+  background: linear-gradient(90deg, #27427a, #3154a5, #3c64c2, #27427a);
+  background-size: 300% 100%;
+  animation: gradientShift 8s ease infinite;
+  opacity: 0.75;
+}
+
+/* CTA button animated gradient (via pseudo-element) */
+.btnAnimated {
+  position: relative;
+  isolation: isolate; /* contain the glow */
+  overflow: hidden;   /* keep ::before clipped to rounded shape */
+}
+.btnAnimated::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  background: linear-gradient(90deg, #27427a, #3154a5, #3c64c2, #27427a);
+  background-size: 300% 100%;
+  animation: gradientShift 6s ease infinite;
+}
+.btnAnimated:hover::before {
+  filter: brightness(1.06);
+}
+.btnAnimated::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  z-index: -1;
+  box-shadow: 0 8px 24px rgba(49, 84, 165, 0.35);
+}
+
+/* small gradient bullets */
+.brandDot {
+  background: linear-gradient(90deg, #27427a, #3154a5, #3c64c2);
+}
+
+/* motion-reduced fallback */
+@media (prefers-reduced-motion: reduce) {
+  .hairline,
+  .btnAnimated::before {
+    animation: none !important;
+    background-position: 50% 50% !important;
+  }
+}

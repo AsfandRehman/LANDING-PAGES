@@ -1,0 +1,126 @@
+/* === Tailwind & Swiper Imports === */
+@import "tailwindcss";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/effect-fade";
+
+/* === Self-hosted Font === */
+@font-face {
+  font-family: "BlackChancery";
+  src: url("/fonts/BLKCHCRY.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Root Variables === */
+:root {
+  /* === Brand Color Palette === */
+  --color-olive-dark: #47411d;
+  --color-olive: #5c624c;
+  --color-rose: #ad6b6b;
+  --color-blood: #9a0000;
+  --color-ruby: #742619;
+  --color-wine: #341518;
+  --color-chestnut: #623724;
+  --color-plum: #3e3642;
+  --color-midnight: #01072b;
+  --color-void: #020100;
+
+  /* === Semantic Color Tokens === */
+  --primary: var(--color-blood);
+  --primary-hover: #b30000;
+  --secondary: var(--color-plum);
+  --accent: var(--color-rose);
+  --background: var(--color-void);
+  --foreground: #f2f2f2;
+
+  /* === Fonts (set in layout.tsx via next/font) === */
+  --font-cinzel: "Cinzel Decorative", serif;
+  --font-cormorant: "Cormorant Garamond", serif;
+  --font-chancery: "BlackChancery", cursive;
+}
+
+/* === Dark Mode Override === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-midnight);
+    --foreground: #f9f9f9;
+  }
+}
+
+/* === Font Utility Classes === */
+.font-cinzel {
+  font-family: var(--font-cinzel);
+}
+.font-cormorant {
+  font-family: var(--font-cormorant);
+}
+.font-chancery {
+  font-family: var(--font-chancery);
+}
+
+/* === Base Body === */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-cormorant), system-ui, serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Button Classes === */
+.btn {
+  @apply px-6 py-2 rounded-full text-sm uppercase tracking-widest font-semibold transition;
+}
+
+/* === Primary Button === */
+.btn-primary {
+  color: white;
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* === Outline Button === */
+.btn-outline {
+  color: var(--foreground);
+  background-color: transparent;
+  border: 1px solid var(--foreground);
+  transition: all 0.3s ease;
+}
+.btn-outline:hover {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+
+
+/* === Sender Form: FORCE LEFT === */
+[id^="sender-form-"] {
+  display: block !important;
+  text-align: left !important;
+}
+
+[id^="sender-form-"] > div {
+  margin: 0 !important;           /* no auto-centering */
+  float: none !important;
+  width: 100% !important;         /* responsive */
+  max-width: 560px !important;    /* desktop cap */
+}
+/* Desktop nudge */
+[id^="sender-form-"] > div {
+  margin-left: 80px !important;  /* adjust until perfect on desktop */
+  margin-right: auto !important;
+}
+
+/* Mobile: reset to perfectly centered */
+@media (max-width: 768px) {
+  [id^="sender-form-"] > div {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}

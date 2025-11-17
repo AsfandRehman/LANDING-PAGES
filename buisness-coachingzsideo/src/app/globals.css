@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* existing */
+    --color-bg: #ffffff;
+    --color-accent: #2563eb;
+    --color-accent-hover: #1e40af;
+    --color-text: #0f172a;
+
+    /* navbar palette */
+    --color-nav-bg: #1e40af;            /* Tailwind blue-800: deep, professional */
+    --color-nav-text: #ffffff;          /* main text on nav */
+    --color-nav-link: rgba(255,255,255,0.9);
+    --color-nav-link-hover: #ffffff;    /* full white on hover for pop */
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-host-grotesk), sans-serif;
+  }
+}
+@layer utilities {
+  .shiny-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(90deg, #0f172a, #2563eb, #0f172a);
+    background-size: 200% 100%;
+    animation: shine 3s linear infinite;
+  }
+  @keyframes shine {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .transition-max-height {
+    transition-property: max-height;
+  }
+}.scroll-stack-container.scroll-stack-scroller {
+  position: relative;
+  /* let the page scroll (we're using useWindowScroll=true), so no fixed height here */
+}
+
+.scroll-stack-inner {
+  position: relative;
+}
+
+.scroll-stack-card {
+  /* card starts as a normal flow element; JS handles transform/pin */
+  transform: translateZ(0);
+  will-change: transform, filter;
+}
+
+.scroll-stack-end {
+  /* spacer so the last pinned item can release cleanly */
+  height: 50vh;
+}

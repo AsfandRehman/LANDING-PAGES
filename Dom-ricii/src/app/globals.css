@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* full-width shimmering sweep across the separator */
+@keyframes shine-full {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shine-full {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.0) 20%,
+    rgba(255,255,255,0.9) 50%,
+    rgba(255,255,255,0.0) 80%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shine-full 2.6s linear infinite;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.25));
+}
+
+/* optional social hover glow (used via drop-shadow-glow) */
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 10px rgba(51,84,165,0.75));
+}
+/* ✨ Dark text shimmer (looks like dark ink with a moving lighter band) */
+.shine-text-dark {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  background-image: linear-gradient(
+    110deg,
+    #0f1216 0%,
+    #0f1216 40%,
+    #aab2c1 50%,
+    #0f1216 60%,
+    #0f1216 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200% 100%;
+  animation: shine-move 2.8s linear infinite;
+  /* optional subtle lift on dark bg */
+  filter: drop-shadow(0 0.5px 0 rgba(0,0,0,0.4));
+}
+
+/* ♻️ Reusable sweep like your footer’s line-shine, applied to buttons */
+@keyframes shine-sweep {
+  0% { transform: translateX(-120%) skewX(-20deg); }
+  100% { transform: translateX(120%) skewX(-20deg); }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate; /* keeps blend-mode effects contained */
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  left: -30%;
+  width: 60%;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.16) 45%,
+    rgba(255,255,255,0.55) 50%,
+    rgba(255,255,255,0.16) 55%,
+    rgba(255,255,255,0) 100%
+  );
+  animation: shine-sweep 2.2s linear infinite;
+  mix-blend-mode: screen; /* brightens without flattening color */
+  border-radius: 999px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .shine-text-dark { animation: none !important; background-position: 0 0 !important; }
+  .btn-shine::after { animation: none !important; opacity: 0; }
+}
+.shine-text-accent {
+  display: inline-block;       /* ensures the line box respects descenders */
+  line-height: 1.08;           /* matches the h1 line-height */
+}

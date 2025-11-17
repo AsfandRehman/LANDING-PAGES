@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+.bg-zsideo-gradient {
+  background: linear-gradient(180deg, #0052A3 0%, #1A73E8 100%);
+}
+.text-zsideo-gradient {
+  background: linear-gradient(90deg, #0052A3 0%, #1A73E8 100%);
+ 
+  -webkit-text-fill-color: transparent;
+}
+
+:root { --safe-top: max(0.5rem, env(safe-area-inset-top)); }
+
+.pill-navbar { padding-top: var(--safe-top); }
+
+/* One look, always: stronger blur + subtle dark tint */
+.pill-navbar .pill-navbar__shell {
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(17, 23, 34, 0.36);                 /* glass tint */
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  box-shadow:
+    0 10px 36px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition:
+    border-color 300ms ease,
+    background-color 300ms ease,
+    box-shadow 300ms ease,
+    backdrop-filter 300ms ease,
+    -webkit-backdrop-filter 300ms ease;
+}
+
+/* Optional dark mode fine-tune */
+:root.dark .pill-navbar .pill-navbar__shell {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(10, 13, 20, 0.40);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+}
+
+/* CTA gradient button */
+.btn-animated-bg { position: relative; isolation: isolate; }
+.btn-animated-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 0;
+  background: linear-gradient(90deg, #27427a, #3154a5, #3c64c2, #27427a);
+  background-size: 300% 100%;
+  animation: gradientShift 6s ease infinite;
+}
+.btn-animated-bg:hover::before { filter: brightness(1.06); }
+.btn-animated-bg::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  z-index: -1;
+  box-shadow: 0 8px 24px rgba(49, 84, 165, 0.35);
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Link underline accent */
+.nav-underline {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 100%;
+  border-radius: 9999px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 300ms ease;
+  background: linear-gradient(90deg, #27427a, #3154a5, #3c64c2);
+}

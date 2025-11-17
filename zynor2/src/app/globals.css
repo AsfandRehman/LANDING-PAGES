@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+
+
+:root {
+  /* ===== Colors ===== */
+  --color-hero-bg: #6c1898;
+  --color-surface-dark: rgba(0, 0, 0, 0.4);
+  --color-text-on-hero: #ffffff;
+  --color-page-bg: #ffffff;
+
+  /* ===== Border Radius ===== */
+  --radius-hero-curve: 3rem; /* large curved bottom corner */
+  --radius-hero-inner: 1rem; /* inner hero card */
+
+  /* ===== Shadows ===== */
+  --shadow-hero-card: 0 30px 80px -10px rgba(0, 0, 0, 0.6);
+
+  /* ===== Navbar height ===== */
+  --nav-height: 4rem;
+}
+
+/* ======================================================
+   Global Base Styles
+   ====================================================== */
+body {
+  background-color: var(--color-page-bg);
+  color: #0f0f0f;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Optional helper classes if you don’t want Tailwind extension */
+.bg-heroBg {
+  background-color: var(--color-hero-bg);
+}
+.text-onHero {
+  color: var(--color-text-on-hero);
+}
+.rounded-heroCurve {
+  border-bottom-right-radius: var(--radius-hero-curve);
+}
+.rounded-heroInner {
+  border-radius: var(--radius-hero-inner);
+}
+.shadow-heroCard {
+  box-shadow: var(--shadow-hero-card);
+}

@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root { color-scheme: dark; }
+html, body { overflow-x: hidden; }
+
+@layer utilities {
+  @keyframes marquee-right {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+  }
+  .animate-marquee-right {
+    animation: marquee-right 28s linear infinite;
+  }
+}
+
+
+/* --- animations --- */
+@layer utilities {
+  /* simple fade-in for the small row */
+  .animate-fade-in {
+    animation: fade-in .6s ease-out .15s forwards;
+  }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* staggered word reveal (uses --d for delay) */
+  .word-in { opacity: 0; }
+  .word-in { animation: word-in .6s cubic-bezier(.21,.62,.21,1) var(--d,0ms) forwards; }
+  @keyframes word-in {
+    from { opacity: 0; transform: translateY(12px) scale(.98); filter: blur(2px); }
+    to   { opacity: 1; transform: translateY(0) scale(1);   filter: blur(0); }
+  }
+
+  /* fade-up with custom delay via [--delay] utility */
+  .animate-fade-up {
+    animation: fade-up .7s ease-out var(--delay,0ms) forwards;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* infinite shine inside text fill */
+  .shine-text {
+    background-image: linear-gradient(
+      110deg,
+      var(--accent) 0%,
+      var(--accent) 35%,
+      rgba(255,255,255,0.95) 50%,
+      var(--accent) 65%,
+      var(--accent) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    animation: shine-sweep 2.8s linear infinite;
+    will-change: background-position;
+  }
+  @keyframes shine-sweep {
+    0%   { background-position: -200% 0; }
+    100% { background-position:  200% 0; }
+  }
+}
+/* ---- DIG-OUT WORD REVEAL ---- */
+.dig-wrap {
+  display: inline-block;
+  overflow: hidden;              /* hides the part that's "underground" */
+  padding-bottom: 0.08em;        /* tiny lip so it looks like ground edge */
+  transform-style: preserve-3d;
+}
+
+.dig-word {
+  display: inline-block;
+  transform: translateY(1.05em) rotateX(32deg);  /* start below baseline + tilt */
+  transform-origin: 50% 100%;
+  opacity: 0;
+  filter: blur(2px);
+  text-shadow:
+    0 0.28em 0.8em rgba(0,0,0,.55),              /* underground glow/shadow */
+    0 0.06em 0.2em rgba(0,0,0,.35);
+
+  animation: dig-out 680ms cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: var(--d, 0ms);                 /* stagger from inline style */
+}
+
+/* optional: a soft dust puff as it breaks the surface */
+.dig-word::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.05em;
+  width: 0.6em;
+  height: 0.35em;
+  translate: -50% 0;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0.25em 0.06em rgba(0,0,0,.25),
+    0 0 0.5em 0.12em rgba(0,0,0,.15);
+  opacity: 0;
+  animation: dust-pop 520ms ease-out forwards;
+  animation-delay: calc(var(--d, 0ms) + 260ms);
+}
+
+@keyframes dig-out {
+  0%   { transform: translateY(1.05em) rotateX(32deg); opacity: 0; filter: blur(2px); }
+  55%  { opacity: 1; }
+  100% { transform: translateY(0) rotateX(0deg); opacity: 1; filter: blur(0); }
+}
+
+@keyframes dust-pop {
+  0%   { opacity: 0; transform: scale(0.7); }
+  35%  { opacity: .35; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+/* Lenis helpers */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }

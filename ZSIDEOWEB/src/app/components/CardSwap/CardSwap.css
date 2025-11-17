@@ -1,0 +1,35 @@
+.cardSwapWrapper {
+  position: relative; /* not absolute */
+  transform: none; /* remove vertical offset */
+  perspective: 900px;
+  overflow: visible;
+}
+
+.cardSwapCard {
+  position: absolute;
+  top: 50%; /* vertically center */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  border: none;
+  background: #ffffff;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+
+@media (max-width: 768px) {
+  .cardSwapWrapper {
+    transform: scale(0.75) translate(25%, 25%);
+  }
+}
+
+@media (max-width: 480px) {
+  .cardSwapWrapper {
+    transform: scale(0.55) translate(25%, 25%);
+  }
+}

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/* src/app/globals.css */
+html, body {
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* <-- important: page itself does not scroll; only the content frame does */
+  overflow: hidden;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome/Safari */
+}

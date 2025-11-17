@@ -1,0 +1,106 @@
+/* ✅ ALWAYS at the very top */
+@import "tailwindcss";
+
+
+
+:root {
+  --font-primary: 'Matter-Regular.woff2', sans-serif;
+  
+
+}
+/* Smooth scroll behavior globally */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-top: 80px; /* Optional: adjust for fixed headers */
+}
+
+
+
+/* Optional: reduce scroll snapping jitter if using snap scrolling */
+* {
+  scroll-margin-top: 2rem;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+
+body {
+  
+  
+overscroll-behavior: none; /* Prevents bounce scroll on some devices */
+  overflow-x: hidden;
+  position: relative;
+  
+}
+
+.shiny-text {
+  position: relative;
+  display: inline-block;
+  color: #1e3a8a; /* dark blue */
+  background: linear-gradient(
+    120deg,
+    #1e3a8a 0%,
+    #1e3a8a 40%,
+    rgb(105,213,178) 50%,  
+    #1e3a8a 60%,
+    #1e3a8a 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine-sweep 2.5s linear infinite;
+}
+
+@keyframes shine-sweep {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* Gradients */
+.bg-gradient-radial {
+  background-color: whitesmoke;
+}
+
+
+
+/* Shadows */
+.shadow-card {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(255, 75, 43, 0.5);
+}
+
+
+
+/* Line clamp for descriptions */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Optional transition helper */
+.transition-all {
+  transition: all 0.3s ease;
+}

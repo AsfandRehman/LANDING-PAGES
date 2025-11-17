@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* ---------- Root theme tokens ---------- */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* fonts from next/font */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair); /* new: Playfair Display */
+}
+
+@theme inline {
+  /* color tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-600: #0e1b2a;
+  --color-brand-500: #18324c;
+  --color-brand-400: #2c4a68;
+  --color-brand-300: #e7eef6;
+  --color-brand-200: #f3f7fb;
+  --color-brand-accent: #0ea5e9;
+
+  /* font families */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* shadows & radius */
+  --shadow-card: 0 8px 24px rgba(16, 24, 40, 0.06);
+  --radius-xl: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ---------- Base styles ---------- */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------- Typography helpers ---------- */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  @apply text-slate-900;
+}
+p {
+  line-height: 1.7;
+}
+.prose-lead {
+  @apply text-slate-600;
+}
+.eyebrow {
+  @apply text-sm font-medium tracking-wide uppercase text-slate-500;
+}
+
+/* ---------- Utility classes ---------- */
+.btn {
+  @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-semibold transition;
+}
+.btn-primary {
+  @apply bg-slate-900 text-white hover:bg-slate-800;
+}
+.card {
+  @apply rounded-[var(--radius-xl)] bg-white shadow-[var(--shadow-card)] ring-1 ring-slate-200;
+}
